@@ -7,4 +7,4 @@ SELECT
     created as payment_created_timestamp,
     _batched_at as ldts
 
-from `dbt-tutorial`.stripe.payment
+from {{ source("stripe", "payment") }}

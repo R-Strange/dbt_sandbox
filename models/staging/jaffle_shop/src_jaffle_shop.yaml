@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt-tutorial
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        identifier: customers
+        external:
+          dataset: dbt-tutorial
+          table: customers
+      - name: orders
+        identifier: orders
+        external:
+          dataset: dbt-tutorial
+          table: orders
