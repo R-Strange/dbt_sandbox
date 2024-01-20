@@ -15,13 +15,15 @@ order_payments as (
     select
         orders.order_id,
         orders.customer_id,
-        payments.payment_amount
+        payments.payment_amount as amount
     from orders
     left join payments on orders.order_id = payments.order_id
 
+    where payments.payment_status = "success"
+
 ),
 
-total_amount_per_customer as (
+/* total_amount_per_customer as (
 
     select
         customer_id,
@@ -31,17 +33,17 @@ total_amount_per_customer as (
 
     group by customer_id
 
-),
+), */
+
 
 final as (
 
     select
-        orders.order_id,
-        orders.customer_id,
-        total_amount_per_customer.amount
+        order_id,
+        customer_id,
+        amount
     
-    from orders
-    left join total_amount_per_customer on orders.customer_id = total_amount_per_customer.customer_id
+    from order_payments
 
 )
 

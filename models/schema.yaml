@@ -39,3 +39,23 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+
+  - name : fct_orders
+    description: this table joins order and payment data. More than one payment can exist for an order.
+    columns:
+      - name: order_id
+        description: unique id for each order
+        tests:
+          - not_null
+      - name: customer_id
+        description: the customer id for the customer associated with the order
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: amount
+        description: the value of a payment associated with an order. An order can have more than one payment.
+        tests:
+          - not_null
+          
