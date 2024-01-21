@@ -6,12 +6,25 @@ sources:
     schema: jaffle_shop
     tables:
       - name: customers
+        columns:
+          - name: id
+            description: customer ID PK
+            tests:
+              - unique
+              - not_null
         identifier: customers
         external:
           dataset: dbt-tutorial
           table: customers
+
       - name: orders
         identifier: orders
+        columns:
+          - name: id
+            description: order ID PK
+            tests:
+              - unique
+              - not_null
         loaded_at_field: _etl_loaded_at
         freshness:
           warn_after:
