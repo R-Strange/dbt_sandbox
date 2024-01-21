@@ -6,6 +6,12 @@ sources:
     schema: stripe
     tables:
       - name: payment
+        columns:
+          - name: id
+            description: payment ID PK
+            tests:
+              - unique
+              - not_null
         identifier: payment
         freshness:
           warn_after:
